@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Artist Portfolio</title>
-
-  <!-- Google Font -->
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -17,7 +14,6 @@
       font-family: 'Inter', sans-serif;
       background: #0F0F12;
       color: #F5F5F7;
-      line-height: 1.6;
     }
 
     a { text-decoration: none; color: inherit; }
@@ -30,14 +26,13 @@
 
     /* NAVBAR */
     nav {
-      position: sticky;
+      position: fixed;
       top: 0;
       width: 100%;
-      transition: transform 0.3s ease;
       background: rgba(15,15,18,0.9);
       backdrop-filter: blur(10px);
       padding: 15px 0;
-      z-index: 100;
+      z-index: 1000;
     }
 
     nav .container {
@@ -55,25 +50,23 @@
     nav a:hover { color: #4F9CF9; }
 
     .logo {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
 
-.profile-img {
-  width: 150px;
-  height: 120px;
- 
-  margin-top: 5px;
-  
-}
+    .profile-img {
+      width: 120px;
+      height: auto;
+      margin-top: 5px;
+    }
+
     /* HERO */
-    <div class="container hero" id="hero">
     .hero {
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: center;
-      padding: 100px 0;
+      padding: 140px 0 100px; /* extra top padding for fixed nav */
       gap: 40px;
     }
 
@@ -92,10 +85,7 @@
       padding: 12px 24px;
       border-radius: 8px;
       display: inline-block;
-      transition: 0.3s;
     }
-
-    .btn:hover { opacity: 0.8; }
 
     .hero img {
       width: 100%;
@@ -129,10 +119,23 @@
       transform: scale(1.05);
     }
 
-    .view-more {
-      margin-top: 15px;
-      display: inline-block;
-      color: #4F9CF9;
+    /* ABOUT */
+    .about {
+      text-align: center;
+      max-width: 600px;
+      margin: auto;
+      color: #A1A1AA;
+    }
+
+    /* CONTACT */
+    .contact {
+      text-align: center;
+    }
+
+    footer {
+      padding: 40px 0;
+      text-align: center;
+      color: #777;
     }
 
     /* LIGHTBOX */
@@ -154,47 +157,26 @@
       max-height: 90%;
     }
 
-    /* ABOUT */
-    .about {
-      text-align: center;
-      max-width: 600px;
-      margin: auto;
-      color: #A1A1AA;
-    }
-
-    /* CONTACT */
-    .contact {
-      text-align: center;
-    }
-
-    footer {
-      padding: 40px 0;
-      text-align: center;
-      color: #777;
-    }
-
     /* MOBILE */
     @media(max-width: 768px) {
       .hero { grid-template-columns: 1fr; }
       .grid { grid-template-columns: 1fr; }
     }
-
   </style>
-
 </head>
+
 <body>
 
 <!-- NAVBAR -->
-
-<nav>
+<nav id="navbar">
   <div class="container">
     <div class="logo">
-  <h3><a href="index.html">Jatin Gulati</a></h3>
-  <img src="me.png" alt="Profile Doodle" class="profile-img">
-</div>
+      <h3><a href="index.html">Jatin Gulati</a></h3>
+      <img src="me.png" alt="Profile Doodle" class="profile-img">
+    </div>
     <ul>
       <li><a href="#character">Character</a></li>
-      <li><a href="#light">Light Studies</a></li>
+      <li><a href="#light">Light</a></li>
       <li><a href="#gesture">Gesture</a></li>
       <li><a href="#sketch">Sketchbook</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -203,8 +185,7 @@
 </nav>
 
 <!-- HERO -->
-
-<div class="container hero">
+<div class="container hero" id="hero">
   <div>
     <h1>Jatin Gulati</h1>
     <p>Character Designer & Visual Story Artist</p>
@@ -214,7 +195,6 @@
 </div>
 
 <!-- CHARACTER -->
-
 <section id="character" class="container">
   <h2>Character Design</h2>
   <div class="grid">
@@ -225,7 +205,6 @@
 </section>
 
 <!-- LIGHT -->
-
 <section id="light" class="container">
   <h2>Light Studies</h2>
   <div class="grid">
@@ -236,7 +215,6 @@
 </section>
 
 <!-- GESTURE -->
-
 <section id="gesture" class="container">
   <h2>Gesture Drawings</h2>
   <div class="grid">
@@ -247,7 +225,6 @@
 </section>
 
 <!-- SKETCHBOOK -->
-
 <section id="sketch" class="container">
   <h2>Sketchbook</h2>
   <div class="grid">
@@ -258,14 +235,12 @@
 </section>
 
 <!-- ABOUT -->
-
 <section class="container about">
   <h2>About Me</h2>
   <p>I am an artist focused on expressive characters, gesture, and storytelling through light and form.</p>
 </section>
 
 <!-- CONTACT -->
-
 <section id="contact" class="container contact">
   <h2>Contact</h2>
   <p>Email: your@email.com</p>
@@ -273,16 +248,16 @@
 </section>
 
 <footer>
-  <p>© 2026 Your Name</p>
+  <p>© 2026 Jatin Gulati</p>
 </footer>
 
-<!-- LIGHTBOX SCRIPT -->
-
+<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
   <img src="" id="lightbox-img">
 </div>
 
 <script>
+  // Lightbox
   const images = document.querySelectorAll('.grid img');
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
@@ -297,13 +272,13 @@
   lightbox.addEventListener('click', () => {
     lightbox.style.display = 'none';
   });
-</script>
-<script>
-  const nav = document.querySelector("nav");
+
+  // Navbar stop after hero
+  const nav = document.getElementById("navbar");
   const hero = document.getElementById("hero");
 
   window.addEventListener("scroll", () => {
-    const heroBottom = hero.offsetTop + hero.offsetHeight;
+    const heroBottom = hero.offsetHeight;
 
     if (window.scrollY > heroBottom) {
       nav.style.position = "absolute";
@@ -314,5 +289,6 @@
     }
   });
 </script>
+
 </body>
 </html>
